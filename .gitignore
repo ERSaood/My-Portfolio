@@ -1,0 +1,52 @@
+
+# Python / Django
+
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Virtual Environment
+venv/
+env/
+.venv/
+
+# Environment Variables
+.env
+
+# Database
+db.sqlite3
+*.sqlite3
+
+# Static Files (generated)
+staticfiles/
+
+# Python cache
+*.pyc
+
+# ==========================
+# React / Vite
+# ==========================
+portfolio/node_modules/
+portfolio/dist/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ==========================
+# VS Code
+# ==========================
+.vscode/
+
+# ==========================
+# OS Files
+# ==========================
+.DS_Store
+Thumbs.db
+
+# ==========================
+# Misc
+# ==========================
+*.log
