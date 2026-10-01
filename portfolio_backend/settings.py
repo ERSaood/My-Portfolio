@@ -31,9 +31,10 @@ DEBUG = os.getenv("DEBUG", "False").lower() in {"1", "true", "yes", "on"}
 
 ALLOWED_HOSTS = [ '*' ] 
 
+CORS_ALLOW_ORIGINS=["https://my-portfolio-flax-nine-84.vercel.app"]
 
 CSRF_TRUSTED_ORIGINS = [
-    "https://*.railway.app",
+    "https://web-production-e2996.up.railway.app",
     "https://my-portfolio-flax-nine-84.vercel.app"
 ]
 
@@ -64,6 +65,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
 
     'corsheaders.middleware.CorsMiddleware',
@@ -143,8 +145,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STORAGES = {
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}
 # Used by Django's email backend for automatic contact-form acknowledgements.
 import os
 
