@@ -1,1 +1,1 @@
-web: python manage.py collectstatic --noinput && gunicorn <project>.wsgi --bind 0.0.0.0:$PORT
+web: python manage.py migrate && gunicorn --access-logfile - --error-logfile - --capture-output --log-level debug portfolio_backend.wsgi
