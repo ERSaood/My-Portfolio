@@ -28,11 +28,7 @@ urlpatterns = [
     path("api/", include("portfolio_backend.experience.urls")),
     path("api/", include("portfolio_backend.education.urls")),
     path("api/", include("portfolio_backend.about.urls")),
-    
-
 ]
 
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
