@@ -29,9 +29,10 @@ const itemVariants = {
 
 export default function Experience() {
   const [timelineData, setTimelineData] = useState([]);
+const API_BASE_URL = "https://web-production-e2996.up.railway.app";
 
 useEffect(() => {
-  fetch("http://127.0.0.1:8000/api/experience/")
+  fetch(`${API_BASE_URL}/api/experience/`)
     .then((res) => res.json())
     .then((data) => {
       setTimelineData(data);

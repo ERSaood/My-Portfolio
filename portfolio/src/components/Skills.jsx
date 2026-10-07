@@ -69,9 +69,9 @@ const skillItemVariants = {
 
 export default function Skills() {
   const [skills, setSkills] = useState([]);
-
+  const API_BASE_URL = "https://web-production-e2996.up.railway.app";
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/api/skills/")
+     fetch(`${API_BASE_URL}/api/resume/`)
       .then((res) => res.json())
       .then((data) => {
         setSkills(data);

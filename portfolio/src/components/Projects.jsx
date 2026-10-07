@@ -72,11 +72,11 @@ export default function Projects() {
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
+const API_BASE_URL = "https://web-production-e2996.up.railway.app";
   useEffect(() => {
     setLoading(true);
     setError(null);
-    fetch("http://127.0.0.1:8000/api/projects/")
+    fetch(`${API_BASE_URL}/api/projects/`)
       .then((res) => {
         if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
         return res.json();

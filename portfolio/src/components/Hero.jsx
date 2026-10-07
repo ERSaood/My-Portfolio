@@ -5,16 +5,23 @@ import { useEffect, useState } from "react";
 
 export default function Hero() {
     const [resumeUrl, setResumeUrl] = useState("");
-
+    const API_BASE_URL = "https://web-production-e2996.up.railway.app";
 useEffect(() => {
-  fetch("http://127.0.0.1:8000/api/resume/")
-    .then((res) => res.json())
+  fetch(`${API_BASE_URL}/api/resume/`)
+    .then((res) => {
+      if (!res.ok) {
+        throw new Error(`HTTP error! status: ${res.status}`);
+      }
+      return res.json();
+    })
     .then((data) => {
+      console.log("Resume API Response:", data);
+
       if (data.length > 0) {
         setResumeUrl(data[0].resume);
       }
     })
-    .catch((err) => console.error(err));
+    .catch((err) => console.error("Resume API Error:", err));
 }, []);
 
     const handleScrollTo = (id) => {

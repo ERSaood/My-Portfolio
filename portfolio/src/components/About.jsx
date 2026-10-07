@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
+const API_BASE_URL = "https://web-production-e2996.up.railway.app";
 import {
   FaUserGraduate,
   FaBriefcase,
@@ -51,19 +52,24 @@ export default function About() {
   const [about, setAbout] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    fetch("/api/about/")
-      .then((res) => res.json())
-      .then((data) => {
-        setAbout(data[0] ?? null);
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.error(err);
-        setLoading(false);
-      });
-
-  }, []);
+useEffect(() => {
+  fetch(`${API_BASE_URL}/api/about/`)
+    .then((res) => {
+      if (!res.ok) {
+        throw new Error(`HTTP error! status: ${res.status}`);
+      }
+      return res.json();
+    })
+    .then((data) => {
+      console.log("About API Response:", data);
+      setAbout(data[0] ?? null);
+      setLoading(false);
+    })
+    .catch((err) => {
+      console.error("About API Error:", err);
+      setLoading(false);
+    });
+}, []); ;
 
   if (loading) {
     return (

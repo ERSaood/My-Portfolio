@@ -19,7 +19,7 @@ export default function Education() {
   useEffect(() => {
     const fetchEducation = async () => {
       try {
-        const response = await fetch("http://127.0.0.1:8000/api/education/");
+        const response = await fetch("https://web-production-e2996.up.railway.app/api/education/");
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
