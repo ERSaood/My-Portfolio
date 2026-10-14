@@ -29,15 +29,15 @@ SECRET_KEY = os.getenv("SECRET_KEY", "django-insecure-1w72+5eql(6c(0ke#o$w6(jzj%
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv("DEBUG", "False").lower() in {"1", "true", "yes", "on"}
 
-ALLOWED_HOSTS = [ '*' ] 
+ALLOWED_HOSTS = [".onrender.com", "localhost", "127.0.0.1"]
+ 
 
 CORS_ALLOW_ORIGINS=["https://my-portfolio-flax-nine-84.vercel.app"]
 
 CSRF_TRUSTED_ORIGINS = [
-    "https://web-production-e2996.up.railway.app",
-    "https://my-portfolio-flax-nine-84.vercel.app"
+    "https://YOURAPP.onrender.com",   # Render ka URL milne ke baad bharein
+    "https://my-portfolio-flax-nine-84.vercel.app",
 ]
-
 
 
 
@@ -93,8 +93,9 @@ TEMPLATES = [
         },
     },
 ]
-CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOWED_ORIGINS = ["https://my-portfolio-flax-nine-84.vercel.app"]
 CORS_ALLOW_CREDENTIALS = True
+
 
 WSGI_APPLICATION = 'portfolio_backend.wsgi.application'
 
@@ -149,8 +150,7 @@ STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / "staticfiles"
 
 MEDIA_URL = "/media/"
-MEDIA_ROOT = Path(os.getenv("RAILWAY_VOLUME_MOUNT_PATH", BASE_DIR / "media"))
-
+MEDIA_ROOT = BASE_DIR / "media"
 STORAGES = {
     "default": {
         "BACKEND": "django.core.files.storage.FileSystemStorage",
@@ -159,10 +159,9 @@ STORAGES = {
         "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
     },
 }# Used by Django's email backend for automatic contact-form acknowledgements.
-import os
 
-EMAIL_BACKEND = os.getenv("EMAIL_BACKEND")
 
+EMAIL_BACKEND = os.getenv("EMAIL_BACKEND", "django.core.mail.backends.smtp.EmailBackend")
 EMAIL_HOST = os.getenv("EMAIL_HOST", "smtp.gmail.com")
 
 EMAIL_PORT = int(os.getenv("EMAIL_PORT", 587))
